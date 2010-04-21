@@ -27,6 +27,16 @@
     \$.get("$sbRoot/home/testXBMC", {'host': xbmc_host, 'username': xbmc_username, 'password': xbmc_password});
     
   });
+  
+     \$('#testMail').click(function(){
+    var smtp_server = \$("#smtp_server").val();
+    var smtp_user = \$("#smtp_user").val();
+    var smtp_password = \$("#smtp_password").val();
+    var smtp_sender = \$("#smtp_sender").val();
+    var smtp_receiver = \$("#smtp_receiver").val(); 
+	
+	\$.get("$sbRoot/home/testMail", {'server': smtp_server, 'user': smtp_user, 'password': smtp_password, 'sender': smtp_sender, 'receiver': smtp_receiver});
+  });
 });  
       
 </script>
@@ -116,12 +126,37 @@ blank, but if the hosts are different Growl <b>requires</b> a password.<br />
 
 <legend>Email</legend>
 
-Not Implemented<br />
+<input type="checkbox" name="use_mail" #if $sickbeard.USE_MAIL then "CHECKED" else ""#> <strong>Enable Email Notifications</strong><br />
+Should Sick Beard send an email notification after a successfull download?<br />
 <br />
+
+<strong>SMTP Server:</strong><br />
+SMTP Host name (eg. smtp.myhost.com)<br />
+If no host is given, the notification wont work<br />
+<input type="text" name="smtp_server" id="smtp_server" value="$sickbeard.SMTP_SERVER" size="35"><br />
 <br />
+
+<strong>SMTP User:</strong><br />
+Valid user to log on to your SMTP Server<br />
+<input type="text" name="smtp_user" id="smtp_user" value="$sickbeard.SMTP_USER" size="35"><br />
 <br />
+
+<strong>SMTP Password:</strong><br />
+User Password to log on to your SMTP Server<br />
+<input type="password" name="smtp_password" id="smtp_password" value="$sickbeard.SMTP_PASSWORD" size="35"><br />
 <br />
+
+<strong>Sender</strong><br />
+This will be the sender's address in the email header.<br/>
+<input type="text" name="smtp_sender" id="smtp_sender" value="$sickbeard.SMTP_SENDER" size="35"><br />
 <br />
+
+<strong>Receipient</strong><br />
+The address where the email will be send to. This one must be valid!<br />
+<input type="text" name="smtp_receiver" id="smtp_receiver" value="$sickbeard.SMTP_RECEIVER" size="35"><br />
+<br />
+
+<input type="button" value="Test Email" id="testMail">
 
 </fieldset>
 </div>

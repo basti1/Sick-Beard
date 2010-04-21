@@ -466,7 +466,8 @@ class ConfigNotifications:
     @cherrypy.expose
     def saveNotifications(self, xbmc_notify_onsnatch=None, xbmc_notify_ondownload=None, 
                           xbmc_update_library=None, xbmc_host=None, xbmc_username=None, xbmc_password=None, use_growl=None,
-                          growl_host=None, growl_password=None, ):
+                          growl_host=None, growl_password=None, use_mail=None, smtp_server=None, smtp_user=None, smtp_password=None,
+						  smtp_sender=None, smtp_receiver=None):
 
         results = []
 
@@ -489,6 +490,11 @@ class ConfigNotifications:
             use_growl = 1
         else:
             use_growl = 0
+			
+        if use_mail == "on":
+            use_mail = 1
+        else:
+            use_mail = 0
 
         sickbeard.XBMC_NOTIFY_ONSNATCH = xbmc_notify_onsnatch 
         sickbeard.XBMC_NOTIFY_ONDOWNLOAD = xbmc_notify_ondownload
@@ -501,6 +507,13 @@ class ConfigNotifications:
         sickbeard.USE_GROWL = use_growl
         sickbeard.GROWL_HOST = growl_host
         sickbeard.GROWL_PASSWORD = growl_password
+		
+        sickbeard.USE_MAIL = use_mail
+        sickbeard.SMTP_SERVER = smtp_server
+        sickbeard.SMTP_USER = smtp_user
+        sickbeard.SMTP_PASSWORD = smtp_password
+        sickbeard.SMTP_SENDER = smtp_sender
+        sickbeard.SMTP_RECEIVER = smtp_receiver
         
         sickbeard.save_config()
         
