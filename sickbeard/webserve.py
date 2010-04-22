@@ -1083,7 +1083,12 @@ class Home:
     def testXBMC(self, host=None, username=None, password=None):
         notifiers.testXBMC(urllib.unquote_plus(host), username, password)
         return "Tried sending XBMC notification to "+urllib.unquote_plus(host)
-        
+
+    @cherrypy.expose
+    def testMail(self, server=None, user=None, password=None, sender=None, receiver=None):
+        notifiers.testMail(server, user, password, sender, receiver)
+        return "Tried sending mail notification to "+receiver
+            
     @cherrypy.expose
     def shutdown(self):
 

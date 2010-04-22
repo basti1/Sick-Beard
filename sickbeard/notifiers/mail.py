@@ -26,7 +26,7 @@ Subject: Sick-Beard notification
     try:
         s = smtplib.SMTP(server)
         s.login(user,password)
-        s.sendmail(sender, receiver, msg())
+        s.sendmail(sender, receiver, msg)
         s.quit()
         logger.log("Email notification sent to "+receiver)
     except Exception, e:

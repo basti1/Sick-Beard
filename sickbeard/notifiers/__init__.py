@@ -15,9 +15,7 @@ def testXBMC(host, username, password):
     xbmc.notifyXBMC("Testing XBMC notifications from Sick Beard", "Test Notification", host, username, password)
 
 def testMail(server, user, password, sender, receiver):
-    logger.log("TEST EMAIL")
-    #mail._send("Testing email notification", server, user, password, sender, receiver)
-    mail.sendEmailNotificatio("Testing email notification")
+    mail._send("Testing email notification", server, user, password, sender, receiver)
 	
 def notify(type, message):
     
