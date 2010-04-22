@@ -118,7 +118,7 @@ def main():
 		        'web_root':  sickbeard.WEB_ROOT,
 		        'log_dir':   sickbeard.LOG_DIR if sickbeard.WEB_LOG else None,
 		        'username':  sickbeard.WEB_USERNAME,
-		        'password':  sickbeard.WEB_PASSWORD,
+		        'password':  sickbeard.WEB_PASSWORD
 		})
 	except IOError:
 		logger.log("Unable to start web server, is something else running on port %d?" % sickbeard.WEB_PORT, logger.ERROR)
