@@ -2,8 +2,10 @@ import sickbeard
 
 import xbmc
 import growl
+import mail
 
 from sickbeard.common import * 
+from sickbeard import logger
 
 
 def testGrowl(host, password):
@@ -12,6 +14,11 @@ def testGrowl(host, password):
 def testXBMC(host, username, password):
     xbmc.notifyXBMC("Testing XBMC notifications from Sick Beard", "Test Notification", host, username, password)
 
+def testMail(server, user, password, sender, receiver):
+    logger.log("TEST EMAIL")
+    #mail._send("Testing email notification", server, user, password, sender, receiver)
+    mail.sendEmailNotificatio("Testing email notification")
+	
 def notify(type, message):
     
     if type == NOTIFY_DOWNLOAD and sickbeard.XBMC_NOTIFY_ONDOWNLOAD == True:
@@ -20,4 +27,7 @@ def notify(type, message):
     if type == NOTIFY_SNATCH and sickbeard.XBMC_NOTIFY_ONSNATCH:
             xbmc.notifyXBMC(message, notifyStrings[type])
 
+    if type == NOTIFY_DOWNLOAD and sickbeard.USE_MAIL == True:
+            mail.sendEmailNotification(message)
+    
     growl.sendGrowl(notifyStrings[type], message)

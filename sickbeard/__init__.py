@@ -154,6 +154,12 @@ USE_GROWL = False
 GROWL_HOST = None
 GROWL_PASSWORD = None
 
+USE_MAIL = False
+SMTP_SERVER = None
+SMTP_USER = None
+SMTP_PASSWORD = None
+SMTP_SENDER = None
+SMTP_RECEIVER = None
 __INITIALIZED__ = False
 
 def CheckSection(sec):
@@ -381,6 +387,13 @@ def initialize(consoleLogging=True):
         GROWL_HOST = check_setting_str(CFG, 'Growl', 'growl_host', '')
         GROWL_PASSWORD = check_setting_str(CFG, 'Growl', 'growl_password', '')
         
+	USE_MAIL = bool(check_setting_int(CFG, 'Mail', 'use_mail', 0))
+        SMTP_SERVER = check_setting_str(CFG, 'Mail', 'smtp_server', '')
+        SMTP_USER = check_setting_str(CFG, 'Mail', 'smtp_user', '')
+        SMTP_PASSWORD = check_setting_str(CFG, 'Mail', 'smtp_password', '')
+        SMTP_SENDER = check_setting_str(CFG, 'Mail', 'smtp_sender', '')
+	SMTP_RECEIVER = check_setting_str(CFG, 'Mail', 'smtp_receiver', '')
+
         logger.initLogging(consoleLogging=consoleLogging)
 
         # initialize the main SB database
@@ -642,6 +655,12 @@ def save_config():
     CFG['Growl']['use_growl'] = int(USE_GROWL)
     CFG['Growl']['growl_host'] = GROWL_HOST
     CFG['Growl']['growl_password'] = GROWL_PASSWORD
+    CFG['Mail']['use_mail'] = int(USE_MAIL)
+    CFG['Mail']['smtp_server'] = SMTP_SERVER
+    CFG['Mail']['smtp_user'] = SMTP_USER
+    CFG['Mail']['smtp_password'] = SMTP_PASSWORD
+    CFG['Mail']['smtp_sender'] = SMTP_SENDER
+    CFG['Mail']['smtp_receiver'] = SMTP_RECEIVER
     
     CFG.write()
 
